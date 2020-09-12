@@ -67,7 +67,7 @@ describe("jokes route", async () => {
 
 describe("jokes integration tests", () => {
 	it('should /GET /api/jokes', async () => {
-	  const res = await supertest(server).get('/api/jokes')
+	  const res = await request(server).get('/api/jokes')
 	  expect(res.statusCode).toBe(401)
 	  expect(res.headers['content-type']).toBe('application/json; charset=utf-8')
 	})
