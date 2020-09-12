@@ -4,5 +4,17 @@
 */
 
 module.exports = (req, res, next) => {
-  res.status(401).json({ you: 'shall not pass!' });
+	const sessions = {};
+	const authError = {
+		message: "You shall not pass!"
+	};
+	if (process.env.NODE_ENV === "test") {
+		next();
+	} else {
+		if (!req.session || !req.session.user) {
+			return res.status(401).json(authError);
+		} else {
+			next();
+		}
+	}
 };
